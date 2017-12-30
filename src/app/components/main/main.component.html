@@ -1,0 +1,19 @@
+<svg #SvgMainContainer id="SvgMainContainer" [attr.width]="BrowserWindow.width" [attr.height]="BrowserWindow.height" [attr.viewBox]="setViewBox()" x="0" y="0">
+  <rect *ngFor="let box of Boxes; let i = index;"
+        [attr.x]="box.x"
+        [attr.y]="box.y"
+        [attr.height]="BrowserWindow.height/3"
+        [attr.width]="BrowserWindow.width/3"
+        [attr.fill]="i%2 == 0 ? 'red' : 'green'"
+        (click)="zoomIn($event)"/>
+
+  <text *ngFor="let box of Boxes; let i = index;"
+        [attr.x]="box.x + BrowserWindow.width/6"
+        [attr.y]="box.y + (BrowserWindow.height/6)"
+        style="color: #343130; font-size:2rem">{{i + 1}}</text>
+</svg>
+<button *ngIf="showZoomButton"
+        (click)="zoomOut(SvgMainContainer)"
+        type="button"
+        style="position: absolute; bottom: 0; left: 0;">Zoom Out</button>
+
